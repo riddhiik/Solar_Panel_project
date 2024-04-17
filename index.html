@@ -20,21 +20,22 @@
             height: 850px;
         }
     </style>
-    <input type="file"onchange="readFile">{
-        this 
-    }
+    <input type="file"onchange="readFile(this)">
+
     <main>
 
         <div id="map"></div>
     </main>
     <script>
         function readFile(input) {
+
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var fileContent = e.target.result;
                     // Displaying the content for demonstration
-                    document.getElementById('fileContent').innerText = fileContent;
+                    L.geoJSON(JSON.parse(fileContent)).addTo(map);
+        
                     console.log(fileContent)
                 }
                 
