@@ -34,7 +34,19 @@
                 reader.onload = function (e) {
                     var fileContent = e.target.result;
                     // Displaying the content for demonstration
-                    L.geoJSON(JSON.parse(fileContent)).addTo(map);
+                    L.geoJSON(JSON.parse(fileContent),{
+    style: function(feature) {
+        switch (feature.properties.Result) {
+            case 5: return {color: "rgb(0,0,0,0)",fillColor:"#FF5533", fillOpacity: 0.7};
+            case 4: return {color: "rgb(0,0,0,0)",fillColor:"#FFAF33", fillOpacity: 0.7};
+            case 3: return {color: "rgb(0,0,0,0)",fillColor:"#FFCF33", fillOpacity: 0.7};
+            case 2: return {color: "rgb(0,0,0,0)",fillColor:"#33FF8A", fillOpacity: 0.7};
+            case 1: return {color: "rgb(0,0,0,0)",fillColor:"#33FCFF", fillOpacity: 0.7}; 
+    
+
+        }
+    }
+}).addTo(map);
         
                     console.log(fileContent)
                 }
